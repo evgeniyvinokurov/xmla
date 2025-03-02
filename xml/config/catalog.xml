@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE catalog>
+<catalog>
+   <main-pic>1</main-pic>
+   <field client-path="id">id</field>
+   <field client-path="name">name</field>
+   <field client-path="price">price</field>
+   <field client-path="description">description</field>
+   <field client-path="weight">weight</field>
+   <field client-path="size">size</field>
+   <field client-path="pics">pics</field>
+   <field client-path="pic">pic</field>
+   <field client-path="page">page</field>
+   <filters setup="filters">Кружки|Ручки</filters>
+   <seo_description>Наши Ручки и Кружки с принтами дополнят ваше хозяйство и настроят жизнь на новые свершения.</seo_description>
+   <seo_title>Магазин е-маг, у нас Кружки и Ручки.</seo_title>
+   <seo_keywords>Кружки,Ручки,Магазин</seo_keywords>
+</catalog>

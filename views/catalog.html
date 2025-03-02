@@ -1,0 +1,130 @@
+% include('header.html')
+<link rel="stylesheet" type="text/css" href="/static/css/xmla.css">
+<div id="app" class="catalog" 
+		% if showProduct:
+			showThisProduct="{{showProduct}}"
+      	% else:
+      	    % if not setFilters:
+          		''
+            % else:
+          	setThisFilters="{{setFilters}}"
+            % end
+      	% end
+    >
+    <div class="header">
+        <div class="menu">
+          <div class="menu-item">Е-<span class="title-327">МАГ</span></div>
+        </div>
+        <div class="email hide"></div>
+        <div class="cart">
+        	<div class="cart__title" >Корзина</div>
+        </div>
+    </div>
+  	<div class="cart-main hide">
+        <div class="cart-items">
+          <div class="cart-items__message">У вас в корзине товаров: <span></span> !!!</div>
+          <div class="container">
+          </div>
+      	</div>
+      	<div>
+      		<div class="cart-total" class="hide">
+          		<div class="cart-total__price"></div>
+				<div class="cart-total__confirm-container hide">
+				    <div class="cart-total__confirm button">Купить</div>
+				    <img class="cart-total__loading hide" src="/static/img/1484.gif" width="40px"/>
+				</div>
+          		<div class="cart-total__email-container">
+				      <div><input class="cart-total__email" type="email" placeholder="Введите пожалуйста имейл :)"></input></div>
+				      <div><input class="cart-total__email-ok" type="submit" value="Окей"></input></div>
+            	</div>
+      		</div>
+			<div class="cart-total__greetings hide">
+				Спасибо за покупку! Вам будет отправлен Имейл. <br/>
+			  	<div class="cart-total__greetings-order">Ваш заказ номер <b>#346445672</b><div class="cancel-cross">&times;</div></div>
+      		</div>
+			<div class="container-imgs">
+			</div>
+      	</div>
+      </div>
+      <div class="promo">      		
+          <div class="product-card product-card--big">
+          </div>
+      	  <div class="promo-text">
+             <span class="promo-text__title">магазин. ручки и кружки</span>
+             <span class="promo-text__under">онлайн с 2019</span>
+          </div>
+      </div>
+  	<div class="fblock">
+        <span onclick="click(event)" class="filters-item" data-type="">Все</span>
+  	</div>
+    <div class="catalog">
+    	<div>
+			<div class="products-list">
+		   </div>
+		 </div>
+		 <div id="myModal" class="modal hide">
+		  <div class="modal-content">
+		  </div>
+		</div>
+	</div>
+  		<div class="footer">
+          <div class="menu">
+            <div class="menu-item"><a href="/delivery">Доставка и Оплата</a></div>
+            <div class="menu-item"><a href="/rules">Правила сайта</a></div>
+            <div class="menu-item"><a href="/sitemap">Карта сайта</a></div>
+          </div>
+          <div class="menu">
+            <div class="menu-item"><a href="/blog">Блог</a></div>
+            <div class="menu-item"><a href="/news">Новости</a></div>
+          </div>
+		  <div class="menu-right" style="float: right;margin: 40px;width: 329px;z-index: 2;">
+            <div class="menu-item"><a href="https://zhivemszheney.livejournal.com/3975.html" style="display: block;color: black;" class="">Live journal. Предметная выдача 2024</a></div>            
+          </div>
+      </div>
+
+<div class="hide" id="templates">
+	<div class="template" id="product-card">
+		<div class="product-card catalog-card ---added---" id="id---id---" data-src='------'>
+			<img src="---pic---" />
+			<div class="product-card__name">---name---</div>
+			<div class="product-card__price">---price---</div>
+			<div class="product-card__cover"></div>
+			<div class="product-card__badge">---badge---</div>
+			<div class="product-card__buy" class="hide" >купить</div>
+		</div>
+	</div>
+	<div class="template" id="product-card-modal">
+		<span class="close">&times;</span>
+		<div class="product-card-modal">
+		    <img class="modal__img" src="---pic---" />
+		    <p class="modal__name">---name---</p>
+		    <p>---price---</p>
+		    <p>---weight--- g.</p>
+		    <p>---description---</p>
+		</div>
+	</div>
+	<div class="template" id="product-card-big">
+      	   <img src="---pic---" />
+           <div class="product-card__name">---name---</div>
+           <div class="product-card__price">---price---</div>
+           <div class="product-card__cover"></div>
+	</div>
+	<div class="template" id="filters-item">	
+        <span onclick="click(event)" class="filters-item" data-type="ssssss">ssssss</span>
+	</div>
+	<div class="template" id="product-card-cart">
+		<div class="product" data-src="------">
+           <div class="product__name">---name---</div>
+           <div class="product__price">---price---</div>
+           <div class="remove-cross" >&times;</div>
+        </div>
+	</div>
+	<div class="template" id="product-card-cart-imgs">
+		<div class="product" data-src="------">
+			<img src="---pic---" />
+           <div class="remove-cross" >&times;</div>
+        </div>
+	</div>
+</div>
+<script src="/static/js/xmla.js"></script>
+% include('footer.html')

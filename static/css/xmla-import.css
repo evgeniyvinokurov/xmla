@@ -1,0 +1,52 @@
+.fields-table {
+  position: relative;
+}
+
+.fields-item {
+  position: relative;
+}
+
+
+td:nth-child(odd){
+  background:#ddd;
+}
+td:nth-child(even){
+  background:#bbb;
+}
+
+
+.rowcheck {
+  text-align: center;
+}
+
+tr {
+}
+
+td {
+  padding: 7px;
+}
+
+td.table-item {
+}
+
+td.table-item label,input {
+}
+
+.tdtitle {
+}
+
+.fields {
+  padding: 10px;
+}
+
+#file {
+  width: 250px;
+}
+
+#load {
+  margin-top: 10px;
+}
+
+#result {
+  margin-top: 20px;
+}

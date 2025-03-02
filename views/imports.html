@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Импорт -xmla-</title>
+  	<link rel="shortcut icon" type="image/png" href="/static/img/favicon.png"/>
+  </head>
+  <body>
+    <link rel="stylesheet" type="text/css" href="/static/css/xmla-import.css">
+    <h2>~xmla~ импорт</h2>
+    <p>пожалуйста, загрузите файлы xml и картинок на сервер или загрузите их с помощью этой формы</p>
+    % if hasxml and hasimgs:
+    <input id="file" type="text" name="" value="./imports/in.xml" placeholder="файл импорта">
+    <input id="run" type="submit" name="" value="вперед">
+    <div id="fields">
+    </div>
+    <div id="result">
+    </div>
+    % end
+    % if not hasxml:
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        Select a file: <input type="file" name="upload" />
+        <input type="submit" value="загрузить xml" />
+    </form>
+    % end
+    % if not hasimgs:
+    <form action="/uploadzip" method="post" enctype="multipart/form-data">
+        Select a file: <input type="file" name="uploadzip" />
+        <input type="submit" value="загрузить zip с картинками" />
+    </form>
+    % end
+    % if hasxml and hasimgs:
+    <p>файлы импорта на сервере, </p>
+    <input id="clear" type="submit" name="" value="удалить файлы">
+    % end
+    <script src="/static/js/xmla-import.js"></script></body>
+</html>
