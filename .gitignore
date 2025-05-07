@@ -17,5 +17,5 @@ static/pics/*
 !static/pics/notempty
 .vs/
 yarn.lock
-bottleenv/*
+env/*
 tests/pytest/__pycache__/*

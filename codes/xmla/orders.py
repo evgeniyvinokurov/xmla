@@ -18,17 +18,10 @@ def do(opts):
         return make(opts["ids"], opts["userid"], opts["preorderid"])
 
 def getpreorders(preid):
-    products = []
-    for dir in os.listdir(base.preorderspath):
-        predir = base.preorderspath + dir
-        if os.path.isdir(predir) and dir == preid:
-            for file in os.listdir(predir):
-                if ".xml" in file:        
-                    temppreorderfile = base.preorderspath + "/" + dir + "/" + file 
-                    xmlfile = XmlaXmlLib.xmlfile(temppreorderfile)            
-                    p = XmlaXmlLib.xml_to_dict(xmlfile, "product")
-                    products.append(p)
-    return products 
+    param = []
+    param["preid"] = preid    
+    preorders = XmlaXmlLib.getFiles("preorder", param)
+    return preorders
 
 def make(ids, userId, preorderid):
     opts = {}
@@ -98,20 +91,16 @@ def cancelPreOrder(opts):
     return opts["preorderid"]
 
 def cancelPreOrderPreId(preid):
-    for dir in os.listdir(base.preorderspath):
-        predir = base.preorderspath + dir
-        if os.path.isdir(predir) and dir == preid:
-            for file in os.listdir(predir):
-                if ".xml" in file:        
-                    temppreorderfile = base.preorderspath + "/" + dir + "/" + file 
-                    xmlfile = XmlaXmlLib.xmlfile(temppreorderfile)            
-                    p = XmlaXmlLib.xml_to_dict(xmlfile, "product")
+    param = []
+    param["preid"] = preid    
+    preorders = XmlaXmlLib.getFiles("preorder", param)
 
-                    opts = {}
-                    opts["preorderid"] = preid
-                    opts["product"] = p["id"]
+    for p in preorders:
+        opts = {}
+        opts["preorderid"] = preid
+        opts["product"] = p["id"]
 
-                    cancelPreOrder(opts)
+        cancelPreOrder(opts)
 
 def moveToOrder(file, opts):
     pathuser = base.orderspath + str(opts["userid"]) + "/"
