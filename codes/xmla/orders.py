@@ -91,7 +91,7 @@ def cancelPreOrder(opts):
     return opts["preorderid"]
 
 def cancelPreOrderPreId(preid):
-    param = []
+    param = {}
     param["preid"] = preid    
     preorders = XmlaXmlLib.getFiles("preorder", param)
 
