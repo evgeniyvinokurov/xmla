@@ -97,7 +97,7 @@ class TestClassXmla:
         orderid = orders.make(ids, u["id"], preid)
         allExist = True
         for id in idsarray:
-            file = base.orderspath + str(u["id"]) + "/" + str(orderid)+ "/" + id + ".xml"
+            file = base.orderspath + u["email"] + "/" + str(orderid)+ "/" + id + ".xml"
             allExist = allExist and os.path.isfile(file)
 
         assert allExist != False   
@@ -169,7 +169,7 @@ class TestClassXmla:
         orders.decline(u["id"], orderid, preid)
         allNotExist = True
         for id in idsarray:
-            file = base.orderspath + str(u["id"]) + "/" + str(orderid)+ "/" + id + ".xml"
+            file = base.orderspath + u["email"] + "/" + str(orderid)+ "/" + id + ".xml"
             allNotExist = allNotExist and not os.path.isfile(file)
 
 
@@ -243,14 +243,14 @@ class TestClassXmla:
         orderid = orders.make(ids, u["id"], preid)
         allExist = True
         for id in idsarray:
-            file = base.orderspath + str(u["id"]) + "/" + str(orderid)+ "/" + id + ".xml"
+            file = base.orderspath + u["email"] + "/" + str(orderid)+ "/" + id + ".xml"
             allExist = allExist and os.path.isfile(file)
         
         #  declining order 
         orders.decline(u["id"], orderid, preid)
         allNotExist = True
         for id in idsarray:
-            file = base.orderspath + str(u["id"]) + "/" + str(orderid) + "/" + id + ".xml"
+            file = base.orderspath + u["email"] + "/" + str(orderid) + "/" + id + ".xml"
             allNotExist = allNotExist and not os.path.isfile(file)
 
 

@@ -6,6 +6,7 @@ import random
 from . import base
 
 from ..classes.xmlaxmllib import XmlaXmlLib
+from ..xmla import users
 
 def do(opts):
     if 'orderid' in opts:
@@ -50,12 +51,14 @@ def premake(id, preorderid):
     return preOrderProduct(id, opts)
     
 def decline(userId, orderId, preorderid):
+    user = users.getuser_by_id(userId)
+
     opts = {}
     opts["userid"] = userId
     opts["orderid"] = orderId
     opts["preorderid"] = preorderid
     opts["products"] = []
-    pathorder = base.orderspath + str(opts["userid"]) + "/" + str(opts["orderid"]) + "/"
+    pathorder = base.orderspath + user["email"] + "/" + str(opts["orderid"]) + "/"
     for file in os.listdir(pathorder):
         opts["products"].append(os.path.basename(file))
     cancelOrder(opts)
@@ -84,7 +87,8 @@ def preOrderProduct(id, opts):
         return False
 
 def cancelOrder(opts):
-    pathorder = base.orderspath + str(opts["userid"]) + "/" + str(opts["orderid"]) + "/"
+    user = users.getuser_by_id(opts["userid"])
+    pathorder = base.orderspath + user["email"] + "/" + str(opts["orderid"]) + "/"
 
     for file in opts["products"]:
         if os.path.isfile(pathorder + file):
@@ -114,8 +118,10 @@ def cancelPreOrderPreId(preid):
                     cancelPreOrder(opts)
 
 def moveToOrder(file, opts):
-    pathuser = base.orderspath + str(opts["userid"]) + "/"
-    pathorder = base.orderspath + str(opts["userid"]) + "/" + str(opts["orderid"]) + "/"
+    user = users.getuser_by_id(opts["userid"])
+
+    pathuser = base.orderspath + user["email"] + "/"
+    pathorder = base.orderspath + user["email"]+ "/" + str(opts["orderid"]) + "/"
 
     if (os.path.isdir(pathuser)):
         if (os.path.isdir(pathorder)):

@@ -17,7 +17,7 @@ def createuser(user):
     u["email"] = user["email"]
     u["id"] = random.randint(1000000, 9999999)
     userxmlstr = XmlaXmlLib.object_to_xmlstr(u, "user")
-    XmlaXmlLib.writefile(base.userspath + str(u["id"]) + ".xml", userxmlstr)
+    XmlaXmlLib.writefile(base.userspath + u["email"] + ".xml", userxmlstr)
     return u
 
 def tempuser(preid):
@@ -70,5 +70,14 @@ def getuser(email):
             xmlfile = XmlaXmlLib.xmlfile(base.userspath + file)            
             u = XmlaXmlLib.xml_to_dict(xmlfile, "user")
             if u["email"] == email:
+                return u 
+    return False           
+
+def getuser_by_id(id):    
+    for file in os.listdir(base.userspath):
+        if ".xml" in file:            
+            xmlfile = XmlaXmlLib.xmlfile(base.userspath + file)            
+            u = XmlaXmlLib.xml_to_dict(xmlfile, "user")
+            if u["id"] == str(id):
                 return u 
     return False           
