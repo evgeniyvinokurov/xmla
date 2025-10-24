@@ -1,6 +1,6 @@
-let AjaxService = {
-  doAjax: function(url, cb){
-    var xhttp = new XMLHttpRequest();
+class AjaxService {
+  static doAjax = function(url, cb){
+    let xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -11,9 +11,10 @@ let AjaxService = {
 
     xhttp.open("GET", url, true);
     xhttp.send();
-  },
-  doAjaxPost: function(url, data, cb){
-    var xhttp = new XMLHttpRequest();
+  }
+
+  static doAjaxPost = function(url, data, cb){
+    let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         let data = JSON.parse(this.response);

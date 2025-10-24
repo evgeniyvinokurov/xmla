@@ -1,17 +1,18 @@
 import { ToolsService } from './toolsService.js';
 import { AjaxService } from './ajaxService.js';
 
-let ProductsService = {
-	picSize: 180,
-	categories: [],
-	config: {},
-	products: [],
-	productsAll: [],
-	filters: [],
-	preid: 0,
-	getByApiAll: function(cb, type = ""){		
-		if (this.preid == 0){
-			this.preid = ToolsService.getRandom(100000, 999999);
+class ProductsService {
+	static picSize = 180
+	static categories = []
+	static config = {}
+	static products = []
+	static productsAll = []
+	static filters = []
+	static preid = 0
+
+	static getByApiAll = function(cb, type = ""){		
+		if (ProductsService.preid == 0){
+			ProductsService.preid = ToolsService.getRandom(100000, 999999);
 		}
 
 		let products = [];
@@ -19,7 +20,7 @@ let ProductsService = {
 
 		let fdata = new FormData();
 		fdata.append("type", type);
-		fdata.append("preid", this.preid);
+		fdata.append("preid", ProductsService.preid);
 
         AjaxService.doAjaxPost("/catalog/out/", fdata, function(data){
 			let productsAll = data.products;
@@ -48,47 +49,53 @@ let ProductsService = {
 			let cart = data.cart;
 			cb(products, cart)
 		})
-	},
-	getTotalPrice: function() {
+	}
+
+	static getTotalPrice = function() {
 		let sum = 0;
-		for(let i of this.products) {
+		for(let i of ProductsService.products) {
 			sum += i.price;
 		}
 		return parseFloat(sum).toFixed(2);
-	},
-	getCurrentProducts: function() {
-       return this.products = (this.products.length > 0 ? this.products : []);
-   },
-	getAllProducts: function(cb, type = "") {
+	}
+
+	static getCurrentProducts = function() {
+       return ProductsService.products = (ProductsService.products.length > 0 ? ProductsService.products : []);
+   	}
+
+	static getAllProducts = function(cb, type = "") {
 		let self = this;
-		this.getByApiAll(function(data, cart){
+		ProductsService.getByApiAll(function(data, cart){
 			self.productsAll = data;
 			cb(data, cart)
 		}, type);
-	},
-	addProduct: function(id, cb) {	
-		if (this.preid == 0){
-			this.preid = ToolsService.getRandom(100000, 999999);
+	}
+
+	static addProduct = function(id, cb) {	
+		if (ProductsService.preid == 0){
+			ProductsService.preid = ToolsService.getRandom(100000, 999999);
 		}
 
 		let fdata = new FormData();
 		fdata.append("id", id);
-		fdata.append("preorderid", this.preid);
+		fdata.append("preorderid", ProductsService.preid);
 		fdata.append("pre", true);
 		AjaxService.doAjaxPost("/catalog/preorder/", fdata, function(data){
 			cb(data)
 		})
-	},
-	removeProduct: function(id, cb) {	
+	}
+
+	static removeProduct = function(id, cb) {	
 		let fdata = new FormData();
 		fdata.append("id", id);
 		fdata.append("repre", true);
-		fdata.append("preorderid", this.preid);
+		fdata.append("preorderid", ProductsService.preid);
 		AjaxService.doAjaxPost("/catalog/preorder/", fdata, function(data){
 			cb(data)
 		})
-	},
-	makeOrder: function(opts, cb) {
+	}
+
+	static makeOrder = function(opts, cb) {
 		let idsstr = "";
 		let i = 0;
 		for (let id of opts.ids) {
@@ -97,17 +104,18 @@ let ProductsService = {
 		}
 		let fdata = new FormData();
 		fdata.append("ids", idsstr);
-		fdata.append("preorderid", this.preid);
+		fdata.append("preorderid", ProductsService.preid);
 		fdata.append("userid", opts.userid);
 		AjaxService.doAjaxPost("/catalog/order/", fdata, function(data){
 			cb(data)
 		})
-	},
-	cancelOrder: function(opts, cb) {
+	}
+
+	static cancelOrder = function(opts, cb) {
 		let fdata = new FormData();
 		
 		fdata.append("ids", opts.ids);
-		fdata.append("preorderid", this.preid);
+		fdata.append("preorderid", ProductsService.preid);
 		fdata.append("userid", opts.userid);
 		fdata.append("orderid", opts.orderid);
 		
