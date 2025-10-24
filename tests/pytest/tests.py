@@ -2,7 +2,6 @@ import sys
 import os
 import random
 import json
-import numpy as n
 
 # getting the name of the directory
 # where the this file is present.
@@ -275,8 +274,4 @@ class TestClassXmla:
                 l = XmlaXmlLib.xml_to_dict(xmlfile, "product")
                 fileids.append(l["id"])
         
-
-        narr1 = n.array([ids])
-        narr2 = n.array([fileids])
-
         assert (set(ids) == set(fileids)) != False
