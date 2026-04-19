@@ -25,4 +25,8 @@ Python 3 и Bottle.py, чистый джаваскрипт
 --sudo docker run -p 8000:8000 -d xmla  
 или  
 docker compose up  
-    
+      
+  
+<p align="left">
+ <img width="70%"  src="xmla.jpg" alt="xmla"/>
+</p>
